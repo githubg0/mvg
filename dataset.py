@@ -18,23 +18,8 @@ class Dataset(data.Dataset):
         self.root_dir = root_dir
         print('root_dir:', root_dir)
        
-        if  'label42' in self.root_dir:
-            self.output_dim = 43 
-        elif  'label24' in self.root_dir:
-            self.output_dim = 24 
-        elif  'label18' in self.root_dir:
-            self.output_dim = 18
-        elif '109' in root_dir.lower():
-            self.output_dim = 109
-        elif  'label10' in self.root_dir:
-            self.output_dim = 10
-        elif  'label01' in self.root_dir:
-            self.output_dim = 2   
-        elif '112' in root_dir.lower():
-            # self.output_dim = 109
-            self.output_dim = 112
-        else:
-            self.output_dim = 75
+        
+        self.output_dim = 109
         print('output_dim:', self.output_dim)
         if 'ggnn' in root_dir.lower():
             self.SUBGS = ['comp']
