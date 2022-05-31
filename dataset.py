@@ -21,31 +21,17 @@ class Dataset(data.Dataset):
         
         self.output_dim = 109
         print('output_dim:', self.output_dim)
-        if 'ggnn' in root_dir.lower():
-            self.SUBGS = ['comp']
-            try:
-                with open(self.root_dir + 'edge_types.pkl', 'rb') as fp:
-                    self.EDGE_TYPE = [pickle.load(fp)]
-            except:
-                self.EDGE_TYPE = [
-                ['child', 'NextToken', 'ReturnsTo', 'ComputedFrom', 'GuardedBy', 'GuardedByNegation', 'FormalArgName', 'LastLexicalUse','LastRead','LastWrite']
-                ]
-            # print(self.EDGE_TYPE)
-        elif 'devign' in root_dir.lower():
-            self.SUBGS = ['comp']
-            self.EDGE_TYPE = [['child', 'NextToken', 'ComputedFrom', 'LastRead', 'LastWrite', 'cfg_edge']]
-
-        else:
-            if os.path.exists(self.root_dir + 'edge_types.pkl'):
-                with open(self.root_dir + 'edge_types.pkl', 'rb') as fp:
-                    edges_info = pickle.load(fp)
-                if len(edges_info) == 2:
-                    self.EDGE_TYPE = edges_info[0]
-                    self.SUBGS = edges_info[1]
-                else:
-                    self.EDGE_TYPE = edges_info
+        
+        if os.path.exists(self.root_dir + 'edge_types.pkl'):
+            with open(self.root_dir + 'edge_types.pkl', 'rb') as fp:
+                edges_info = pickle.load(fp)
+            if len(edges_info) == 2:
+                self.EDGE_TYPE = edges_info[0]
+                self.SUBGS = edges_info[1]
             else:
-                assert False
+                self.EDGE_TYPE = edges_info
+        else:
+            assert False
              
         print(self.EDGE_TYPE)
         print(self.SUBGS)
