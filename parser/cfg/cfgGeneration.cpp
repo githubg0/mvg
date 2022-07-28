@@ -275,8 +275,9 @@ int main(int argc, const char **argv) {
     int endPos=pathOrg.length()-4;
     string fileTail="";
     for (int i = 80; i<endPos;i++) fileTail=fileTail+pathOrg[i];
-    string CFGwritepath="/newNAS/Share/longting/PycharmProjects/data/newScrapy2/web2AST/";
-    string ASTwritepath="/newNAS/Share/longting/PycharmProjects/data/newScrapy2/web2CFG/";
+    // TODO
+    string CFGwritepath="/astpath/";
+    string ASTwritepath="/cfgpath/";
     // string CFGwritepath = argv[6];
     // string ASTwritepath = argv[7];
     cout << fileTail << endl;
